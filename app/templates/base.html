@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+
+<head>
+    {% if title %}
+    <title>{{ title }} - Microblog</title>
+    {% else %}
+    <title>Welcome to Microblog</title>
+    {% endif %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="max-w-7xl mx-auto px-8">
+    <nav class="flex items-center justify-between">
+        <div class="py-4">Microblog</div>
+        <div class="flex items-center gap-4">
+            <a href="/index">Home</a>
+            <a href="/index">About</a>
+            <a href="/index">Contact Us</a>
+        </div>
+    </nav>
+    <hr />
+    <div class="space-y-4 mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>
