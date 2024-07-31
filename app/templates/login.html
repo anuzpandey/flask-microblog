@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-2xl font-bold text-center">Login</h1>
+<p class="text-center text-gray-500 mb-4">Please enter your credentials to login.</p>
+<form class="max-w-lg mx-auto" action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="mb-4">
+        {{ form.username.label }}
+        {{ form.username(class="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6", size=32) }}
+        {% for error in form.username.errors %}
+            <p class="text-sm text-red-700 mt-1">{{ error }}</p>
+        {% endfor %}
+    </div>
+    <div class="mb-4">
+        {{ form.password.label }}
+        {{ form.password(class="block w-full rounded-md border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6", size=32) }}
+        {% for error in form.password.errors %}
+            <p class="text-sm text-red-700 mt-1">{{ error }}</p>
+        {% endfor %}
+    </div>
+    <div class="mb-4 flex items-center gap-4">
+        {{ form.remember_me(class="block text-gray-900 sm:text-sm sm:leading-6") }}
+        {{ form.remember_me.label }}
+    </div>
+    <div class="mb-4">
+        {{ form.submit(class="block w-full rounded-md bg-indigo-600 py-3 px-5 text-center text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600") }}
+    </div>
+</form>
+{% endblock %}
