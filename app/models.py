@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from hashlib import md5
 from typing import Optional
 
 import sqlalchemy as sa
@@ -26,6 +27,9 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+    def avatar(self, size=100):
+        return f'https://avatar.iran.liara.run/public/boy?username={self.username}&size={size}'
 
 
 class Post(db.Model):
