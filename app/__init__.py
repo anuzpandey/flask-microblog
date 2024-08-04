@@ -15,4 +15,4 @@ login.login_view = 'login'
 TailwindCompiler(app, "watch", debugmode_only=True)
 
 from app import models
-from app.providers import route_service_provider
+from app.providers import route_service_provider, error_service_provider
