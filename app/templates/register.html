@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="flex min-h-full flex-col justify-center py-10 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <img
+                class="mx-auto h-12 w-auto"
+                src="{{ url_for('static', filename='dist/img/logo-mark.svg') }}"
+                alt="Your Company"
+            />
+            <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register your account</h2>
+            <p class="text-center">Please enter the details to register.</p>
+        </div>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+            <div class="bg-white px-6 py-10 shadow sm:rounded-lg sm:px-12">
+                <form class="space-y-6" action="" method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="!mt-0">
+                        {{ form.username.label(class="block text-sm font-medium leading-6 text-gray-900") }}
+                        <div class="mt-2">
+                            {{ form.username(
+                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6",
+                                size=32,
+                                placeholder="Username"
+                            ) }}
+                            {% for error in form.username.errors %}
+                                <p class="text-xs text-red-700 mt-1">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        {{ form.email.label(class="block text-sm font-medium leading-6 text-gray-900") }}
+                        <div class="mt-2">
+                            {{ form.email(
+                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6",
+                                size=32,
+                                type="email",
+                                placeholder="you@example.com"
+                            ) }}
+                            {% for error in form.email.errors %}
+                                <p class="text-xs text-red-700 mt-1">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        {{ form.password.label(class="block text-sm font-medium leading-6 text-gray-900") }}
+                        <div class="mt-2">
+                            {{ form.password(
+                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6",
+                                size=32,
+                                placeholder="Password"
+                            ) }}
+                            {% for error in form.password.errors %}
+                                <p class="text-xs text-red-700 mt-1">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        {{ form.confirm_password.label(class="block text-sm font-medium leading-6 text-gray-900") }}
+                        <div class="mt-2">
+                            {{ form.confirm_password(
+                                class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6",
+                                size=32,
+                                placeholder="Confirm Password"
+                            ) }}
+                            {% for error in form.confirm_password.errors %}
+                                <p class="text-xs text-red-700 mt-1">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm">
+                            <!-- Agree -->
+                            <input id="agree" required name="agree" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-black focus:ring-black">
+                            <label for="agree" class="ml-3 block text-sm leading-6 text-gray-900">
+                                I agree to the <a href="#" class="text-gray-700 hover:text-black focus:outline-none">Terms of Service</a> and <a href="#" class="text-gray-700 hover:text-black focus:outline-none">Privacy Policy</a>.
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        {{ form.submit(class="flex w-full justify-center rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black") }}
+                    </div>
+                </form>
+            </div>
+
+            <p class="mt-8 text-center text-sm text-gray-500">
+                Already a member?
+                <a href="{{ url_for('login') }}" class="font-semibold leading-6 text-gray-700 hover:text-black focus:outline-none">Login</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

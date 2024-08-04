@@ -1,0 +1,15 @@
+{
+  "name": "microblog",
+  "type": "module",
+  "scripts": {
+    "watch": "npx tailwindcss -i ./app/static/src/app.css -o ./app/static/dist/app.min.css --minify --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@types/bun": "latest",
+    "tailwindcss": "^3.4.7"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

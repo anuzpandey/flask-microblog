@@ -3,6 +3,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
+from app.utils.tailwind_compiler import TailwindCompiler
 from config import Config
 
 app = Flask(__name__)
@@ -11,5 +12,6 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
+TailwindCompiler(app, "watch", debugmode_only=True)
 
 from app import routes, models
