@@ -1,6 +1,13 @@
-<table>
-    <tr valign="top">
-        <td><img src="{{ post.author.avatar(36) }}" class="w-12 h-12" alt=""></td>
-        <td>{{ post.author.username }} says:<br>{{ post.body }}</td>
-    </tr>
-</table>
+<li class="relative flex gap-x-4">
+    <div class="absolute left-0 top-0 flex w-10 justify-center -bottom-6">
+        <div class="w-px bg-gray-200"></div>
+    </div>
+    <img src="{{ post.author.avatar() }}" alt="{{ post.author.username }}" class="relative mt-0 h-10 w-10 flex-none rounded-full bg-gray-50">
+    <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200">
+        <div class="flex justify-between gap-x-4">
+            <div class="py-0.5 text-xs leading-5 text-gray-500"><span class="font-medium text-gray-900">{{ post.author.username }}</span> posted</div>
+            <time datetime="2023-01-23T15:56" class="flex-none py-0.5 text-xs leading-5 text-gray-500">3d ago</time>
+        </div>
+        <p class="text-sm leading-6 text-gray-500">{{ post.body }}</p>
+    </div>
+</li>

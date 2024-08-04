@@ -1,18 +1,56 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table>
-        <tr valign="top">
-            <td><img src="{{ user.avatar(128) }}" alt="" class="w-10 h-10"></td>
-            <td>
-                <h1>User: {{ user.username }}</h1>
-                {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-                {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
-            </td>
-        </tr>
-    </table>
-    <hr>
-    {% for post in posts %}
-        {% include 'partials/_post-card.html' %}
-    {% endfor %}
+    <div>
+        <div class="px-4 sm:px-0">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-base font-semibold leading-7 text-gray-900">Profile Information</h3>
+                    <p class="mt-0 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p>
+                </div>
+
+                <a href="{{ url_for('user_profile_edit', username=current_user.username) }}" class="flex w-fit justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">Edit Profile</a>
+            </div>
+        </div>
+        <div class="mt-6 border-t border-gray-100">
+            <dl class="divide-y divide-gray-100">
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ user.full_name if user.full_name else '---' }}</dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Username</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ user.username }}</dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Email address</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ user.email }}</dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Gender</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 capitalize">{{ user.gender if user.gender else '---' }}</dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Bio</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ user.bio if user.bio else '---' }}</dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+
+    <section class="mt-6 border-t border-gray-100 py-8">
+        <div class="px-4 sm:px-0 mb-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-base font-semibold leading-7 text-gray-900">Posts</h3>
+                    <p class="mt-0 max-w-2xl text-sm leading-6 text-gray-500">Timeline of your posts.</p>
+                </div>
+            </div>
+        </div>
+        <ul role="list" class="space-y-6">
+            {% for post in posts %}
+                {% include 'partials/_post-card.html' %}
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}

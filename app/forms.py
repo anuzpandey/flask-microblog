@@ -1,9 +1,12 @@
+import sqlalchemy as sa
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
-import sqlalchemy as sa
+from wtforms.fields.choices import SelectField
+from wtforms.fields.simple import TextAreaField
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length
 
 from app import db
+from app.enums.gender_enums import GenderEnum
 from app.models import User
 
 
@@ -30,3 +33,11 @@ class RegistrationForm(FlaskForm):
         user = db.session.scalar(sa.select(User).where(User.email == email.data))
         if user is not None:
             raise ValidationError('Email already exists.')
+
+
+class EditProfileForm(FlaskForm):
+    full_name = StringField('Full Name', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    bio = TextAreaField('Bio', validators=[Length(min=0, max=256)])
+    gender = SelectField('Gender', choices=[(GenderEnum.MALE.value, 'Male'), (GenderEnum.FEMALE.value, 'Female')])
+    submit = SubmitField('Update Profile')

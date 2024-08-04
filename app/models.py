@@ -7,10 +7,12 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db, login
+from app.enums.gender_enums import GenderEnum
 
 
 class User(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    full_name: so.Mapped[str] = so.mapped_column(sa.String(256), nullable=True)
     username: so.Mapped[str] = so.mapped_column(sa.String(64), index=True, unique=True)
     email: so.Mapped[str] = so.mapped_column(sa.String(120), index=True, unique=True)
     password: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
@@ -18,6 +20,7 @@ class User(UserMixin, db.Model):
 
     bio: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
     last_seen: so.Mapped[Optional[datetime]] = so.mapped_column(default=lambda: datetime.now(timezone.utc))
+    gender: so.Mapped[Optional[str]] = so.mapped_column(sa.String(16), default=GenderEnum.MALE.value)
 
     created_at: so.Mapped[datetime] = so.mapped_column(index=True, default=lambda: datetime.now(timezone.utc))
     updated_at: so.Mapped[datetime] = so.mapped_column(index=True, default=lambda: datetime.now(timezone.utc), nullable=True)
@@ -32,7 +35,8 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password, password)
 
     def avatar(self, size=100):
-        return f'https://avatar.iran.liara.run/public/boy?username={self.username}&size={size}'
+        gender = 'boy' if self.gender == GenderEnum.MALE.value else 'girl'
+        return f'https://avatar.iran.liara.run/public/{gender}?username={self.username}'
 
 
 class Post(db.Model):

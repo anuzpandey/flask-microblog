@@ -38,7 +38,7 @@
                             >
                                 <span class="sr-only">Open user menu</span>
 
-                                <img class="h-8 w-8 rounded-full" src="{{ current_user.avatar(size=40) }}" alt="User avatar">
+                                <img class="h-8 w-8 rounded-full" src="{{ current_user.avatar() }}" alt="User avatar">
                             </button>
 
                             <div
@@ -47,7 +47,7 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                 tabindex="-1"
                             >
-                                <a href="{{ url_for('user_show', username=current_user.username) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                                <a href="{{ url_for('user_profile_show', username=current_user.username) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                                 <a href="{{ url_for('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                             </div>
