@@ -8,3 +8,8 @@ venv
 app.db
 
 node_modules
+
+# Logs
+logs
+logs/*
+*.log
