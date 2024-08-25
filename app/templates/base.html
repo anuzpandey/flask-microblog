@@ -26,7 +26,7 @@
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contact</a>
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-900">RSS</a>
                 </div>
-                <div class="lg:flex lg:flex-1 lg:justify-end gap-4 items-center">
+                <div class="flex lg:flex-1 lg:justify-end gap-4 items-center">
                     {% if current_user.is_authenticated %}
                         <div x-data="{ userMenuOpen: false }" class="relative ml-3">
                             <button
@@ -54,7 +54,7 @@
                         </div>
                     {% else %}
                         <a href="{{ url_for('login') }}" class="text-sm font-semibold leading-6 text-gray-900">LogIn</a>
-                        <a href="{{ url_for('register') }}" class="text-sm font-semibold leading-6 text-gray-900">SignUp</a>
+                        <a href="{{ url_for('register') }}" class="text-sm font-semibold leading-6 text-gray-900 ms-4">SignUp</a>
                     {% endif %}
                 </div>
             </nav>
